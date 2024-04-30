@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\BrandsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +21,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Home
+Route::get('/home', [HomeController::class, 'index']);
 //Product
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/create', [ProductsController::class, 'store']);
 Route::get('/product/edit', [ProductsController::class, 'edit']);
-//Order
+//CategoryProduct
+Route::get('/product_categories', [ProductCategoryController::class, 'index']);
+Route::get('/product_categories/create', [ProductCategoryController::class, 'store']);
+Route::get('/product_categories/edit', [ProductCategoryController::class, 'edit']);
+//Brand
+Route::get('/brand', [BrandsController::class, 'index']);
+Route::get('/brand/create', [BrandsController::class, 'store']);
+Route::get('/brand/edit', [BrandsController::class, 'edit']);
+//Orders
 Route::get('/orders', [OrdersController::class, 'index']);
+Route::get('/orders/create', [OrdersController::class, 'store']);
+Route::get('/orders/edit', [OrdersController::class, 'edit']);

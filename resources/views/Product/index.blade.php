@@ -36,7 +36,7 @@
                                             <td>{{ $product->status }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" class="d-inline">
+                                                <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>

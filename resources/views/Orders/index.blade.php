@@ -8,7 +8,7 @@
                     <div class="card-header">Order List</div>
 
                     <div class="card-body">
-                        <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">Create Order</a>
+                        <a href="" class="btn btn-primary mb-3">Create Order</a>
 
                         @if ($orders->isEmpty())
                             <p>No orders found.</p>
