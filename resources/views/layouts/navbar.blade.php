@@ -37,6 +37,9 @@
                         <a href="{{url('orders')}}" class="nav-item nav-link">Order</a>
                     </div>
                 </div>
+                <a 
+                href="{{url('login')}}" class="nav-item nav-link">Login
+                </a>
                 <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                     <a href="" class="btn px-0">
                         <i class="fas fa-heart text-primary"></i>
@@ -48,6 +51,7 @@
                         <span class="badge text-secondary border border-secondary rounded-circle"
                             style="padding-bottom: 2px;"></span>
                     </a>
+
                 </div>
             </nav>
         </div>

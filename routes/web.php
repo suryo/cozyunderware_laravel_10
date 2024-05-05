@@ -6,6 +6,8 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\Auth\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,11 +20,13 @@ use App\Http\Controllers\BrandsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 //Home
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//Route::get('/home', [HomeController::class, 'index']);
 //Product
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/create', [ProductsController::class, 'store']);
@@ -39,3 +43,10 @@ Route::get('/brand/edit', [BrandsController::class, 'edit']);
 Route::get('/orders', [OrdersController::class, 'index']);
 Route::get('/orders/create', [OrdersController::class, 'store']);
 Route::get('/orders/edit', [OrdersController::class, 'edit']);
+//Login
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/home', function () {
+    return view('home');
+})->middleware('auth');
