@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Logins</div>
+                    <div class="card-header">Login</div>
 
                     <div class="card-body">
                         <table class="table">
