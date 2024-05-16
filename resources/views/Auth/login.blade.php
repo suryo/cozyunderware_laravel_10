@@ -1,6 +1,6 @@
 <!-- resources/views/auth/login.blade.php -->
 
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" action="{{ route('PostLogin') }}">
     @csrf
 
     <div>
