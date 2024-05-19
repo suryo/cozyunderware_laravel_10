@@ -13,11 +13,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function showRegisterForm()
-    {
-        return view('auth.register');
-    }
-
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -26,8 +21,15 @@ class LoginController extends Controller
             return redirect()->intended('home');
         }
 
-        return redirect()->back()->withErrors(['email' => 'Email atau password salah.']);
+        // return redirect()->back()->withErrors(['email' => 'Email atau password salah.']);
+        return redirect('login')->with('failed', 'Email atau password salah.');
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('login')->with('success', 'Logout berhasil, silahkan login kembali!');
+    }
+
 
 
 }

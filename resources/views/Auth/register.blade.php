@@ -15,7 +15,16 @@
                         <div class="wrapper">
                             <div id="formContent">
                               <!-- Tabs Titles -->
-
+                              @if(session()->has('success'))
+                              <div class="alert alert-success" role="alert">
+                                {{ session()->get('success') }}
+                              </div>
+                              @endif
+                              @if(session()->has('failed'))
+                              <div class="alert alert-danger" role="alert">
+                                {{ session()->get('failed') }}
+                              </div>
+                              @endif
                               {{-- <!-- Icon -->
                               <div class="fadeIn first">
                                 <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
@@ -24,6 +33,7 @@
                               <!-- Login Form -->
                               <form method="POST" action="{{ route('PostReg') }}">
                                 @csrf
+                                <input type="text"  id="name" type="name" name="name" class="fadeIn first" placeholder="Nama Lengkap" required>
                                 <input type="text"  id="email" type="email" name="email" value="{{ old('email') }}" class="fadeIn second" placeholder="Email" required>
                                 <input type="text"  id="password" type="password" name="password" required class="fadeIn third" placeholder="Password">
                                 <input type="submit" class="fadeIn fourth" value="Register">

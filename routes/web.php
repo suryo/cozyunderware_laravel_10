@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\Auth\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,10 +49,11 @@ Route::get('/orders/edit', [OrdersController::class, 'edit']);
 //Login
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('PostLogin', [LoginController::class, 'login'])->name('PostLogin');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 //Daftar
-Route::get('register', [LoginController::class, 'showRegisterForm'])->name('register');
-Route::post('PostReg', [LoginController::class, 'register'])->name('PostReg');
+Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('PostReg', [RegisterController::class, 'create'])->name('PostReg');
 
 // Route::get('/home', function () {
 //     return view('home');

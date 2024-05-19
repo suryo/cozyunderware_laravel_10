@@ -15,7 +15,16 @@
                         <div class="wrapper">
                             <div id="formContent">
                               <!-- Tabs Titles -->
-
+                              @if(session()->has('success'))
+                              <div class="alert alert-success" role="alert">
+                                {{ session()->get('success') }}
+                              </div>
+                              @endif
+                              @if(session()->has('failed'))
+                              <div class="alert alert-danger" role="alert">
+                                {{ session()->get('failed') }}
+                              </div>
+                              @endif
                               {{-- <!-- Icon -->
                               <div class="fadeIn first">
                                 <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />

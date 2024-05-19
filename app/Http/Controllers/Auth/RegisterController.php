@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -56,18 +56,32 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $cek=User::where('email',$request->email)->first();
+
+        if(empty($cek)) {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect('login')->with('success', 'Pendaftaran berhasil!');
+        } else {
+            return redirect('register')->with('failed', 'Pendaftaran gagal, akun tersebut telah terdaftar!');
+        }
+
     }
 }

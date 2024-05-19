@@ -39,17 +39,19 @@
                         @endif
                     </div>
                 </div>
-                @if (Route::current()->getName() == 'register')
+                @if (Route::current()->getName() == 'register' && Auth::user()==null)
                 <a href="{{url('login')}}" class="nav-item nav-link">Login</a>
-                @else
+                @elseif (Route::current()->getName() == 'login' && Auth::user()==null)
                 <a href="{{url('register')}}" class="nav-item nav-link">Belum punya akun? Daftar...</a>
+                @else
+                <a href="{{url('logout')}}" class="nav-item nav-link">Logout</a>
                 @endif
                 @if(Auth::user())
                 <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                     <a href="" class="btn px-0">
-                        <i class="fas fa-heart text-primary"></i>
-                        <span class="badge text-secondary border border-secondary rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
+                        {{-- <i class="fas fa-heart text-primary"></i> --}}
+                        <span class="badge text-secondary"
+                            style="padding-bottom: 2px;">Selamat datang, {{Auth::user()->name}}</span>
                     </a>
                     <a href="" class="btn px-0 ml-3">
                         <i class="fas fa-shopping-cart text-primary"></i>
