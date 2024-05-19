@@ -20,9 +20,9 @@
                         </div>
                     </div>
                     {{-- @foreach ($res_category_product as $item)
-                    <a href="" class="nav-item nav-link">{{$item->product_category_name}}</a>  
+                    <a href="" class="nav-item nav-link">{{$item->product_category_name}}</a>
                     @endforeach --}}
-                    
+
                 </div>
             </nav>
         </div>
@@ -31,15 +31,20 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{{url('home')}}" class="nav-item nav-link">Home</a>
+                        @if(Auth::user())
                         <a href="{{url('product')}}" class="nav-item nav-link">Product</a>
                         <a href="{{url('product_categories')}}" class="nav-item nav-link">Category Product</a>
                         <a href="{{url('brand')}}" class="nav-item nav-link">Brand</a>
                         <a href="{{url('orders')}}" class="nav-item nav-link">Order</a>
+                        @endif
                     </div>
                 </div>
-                <a 
-                href="{{url('login')}}" class="nav-item nav-link">Login
-                </a>
+                @if (Route::current()->getName() == 'register')
+                <a href="{{url('login')}}" class="nav-item nav-link">Login</a>
+                @else
+                <a href="{{url('register')}}" class="nav-item nav-link">Belum punya akun? Daftar...</a>
+                @endif
+                @if(Auth::user())
                 <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                     <a href="" class="btn px-0">
                         <i class="fas fa-heart text-primary"></i>
@@ -53,6 +58,7 @@
                     </a>
 
                 </div>
+                @endif
             </nav>
         </div>
     </div>

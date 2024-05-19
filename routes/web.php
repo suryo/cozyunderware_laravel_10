@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
 //Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-//Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
 //Product
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/create', [ProductsController::class, 'store']);
@@ -49,6 +49,10 @@ Route::get('/orders/edit', [OrdersController::class, 'edit']);
 //Login
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('PostLogin', [LoginController::class, 'login'])->name('PostLogin');
+
+//Daftar
+Route::get('register', [LoginController::class, 'showRegisterForm'])->name('register');
+Route::post('PostReg', [LoginController::class, 'register'])->name('PostReg');
 
 // Route::get('/home', function () {
 //     return view('home');

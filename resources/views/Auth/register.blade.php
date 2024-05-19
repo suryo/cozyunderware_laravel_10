@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card fadeInDown">
-                    <div class="card-header">Silahkan Login terlebih dahulu</div>
+                    <div class="card-header">Silahkan Daftar terlebih dahulu</div>
 
                     <div class="card-body">
                         <div class="wrapper">
@@ -22,11 +22,11 @@
                               </div> --}}
 
                               <!-- Login Form -->
-                              <form method="POST" action="{{ route('PostLogin') }}">
+                              <form method="POST" action="{{ route('PostReg') }}">
                                 @csrf
                                 <input type="text"  id="email" type="email" name="email" value="{{ old('email') }}" class="fadeIn second" placeholder="Email" required>
                                 <input type="text"  id="password" type="password" name="password" required class="fadeIn third" placeholder="Password">
-                                <input type="submit" class="fadeIn fourth" value="Log In">
+                                <input type="submit" class="fadeIn fourth" value="Register">
                               </form>
 
                               <!-- Remind Passowrd -->
