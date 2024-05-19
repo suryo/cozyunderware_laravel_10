@@ -33,9 +33,9 @@
                               <!-- Login Form -->
                               <form method="POST" action="{{ route('PostReg') }}">
                                 @csrf
-                                <input type="text"  id="name" type="name" name="name" class="fadeIn first" placeholder="Nama Lengkap" required>
-                                <input type="text"  id="email" type="email" name="email" value="{{ old('email') }}" class="fadeIn second" placeholder="Email" required>
-                                <input type="text"  id="password" type="password" name="password" required class="fadeIn third" placeholder="Password">
+                                <input type="text"  id="name" type="name" name="name" class="form-input fadeIn first" placeholder="Nama Lengkap" required>
+                                <input type="text"  id="email" type="email" name="email" value="{{ old('email') }}" class="form-input fadeIn second" placeholder="Email" required>
+                                <input type="password"  id="password" type="password" name="password" required class="form-input fadeIn third" placeholder="Password">
                                 <input type="submit" class="fadeIn fourth" value="Register">
                               </form>
 
