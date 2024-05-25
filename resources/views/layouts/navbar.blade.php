@@ -1,67 +1,210 @@
-<div class="container-fluid bg-dark mb-30">
-    <div class="row px-xl-5">
-        <div>
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('/assets/logo/LOGO FIKS-min.jpg') }}" alt="Logo" height="90">
-            </a>
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <a href="#">Cozy_underwear</a>
+          <div id="close-sidebar">
+            <i class="fas fa-times"></i>
+          </div>
         </div>
-        <div class="col-lg-3 d-none d-lg-block">
-            <a class="btn d-flex align-items-center justify-content-between bg-primary w-100"  href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                <h6 class="text-dark m-0">cozy_underwear</h6>
-            </a>
-            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                <div class="navbar-nav w-100">
-                    <div class="nav-item dropdown dropright">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i class="fa fa-angle-right float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                            <a href="" class="dropdown-item">Men's Dresses</a>
-                            <a href="" class="dropdown-item">Women's Dresses</a>
-                            <a href="" class="dropdown-item">Baby's Dresses</a>
-                        </div>
-                    </div>
-                    {{-- @foreach ($res_category_product as $item)
-                    <a href="" class="nav-item nav-link">{{$item->product_category_name}}</a>
-                    @endforeach --}}
-
-                </div>
-            </nav>
+        <div class="sidebar-header">
+          <div class="user-pic">
+            <img class="img-responsive img-rounded" src="{{ asset('/assets/logo/LOGO FIKS-min.jpg') }}"
+              alt="User picture">
+          </div>
+          <div class="user-info">
+            @if(Auth::user())
+            <span class="user-name">{{Auth::user()->name}}
+              {{-- <strong>{{Auth::user()->level}}</strong> --}}
+            </span>
+            <span class="user-role">{{Auth::user()->level}}</span>
+            <span class="user-status">
+              <i class="fa fa-circle"></i>
+              <span>Online</span>
+            </span>
+            @else
+            <span class="user-name">Welcome
+                <strong>Guest</strong>
+              </span>
+              <span class="user-role">-</span>
+              <span class="user-status-offline">
+                <i class="fa fa-circle"></i>
+                <span>Offline</span>
+              </span>
+            @endif
+          </div>
         </div>
-        <div class="col-lg-9">
-            <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav mr-auto py-0">
-                        <a href="{{url('home')}}" class="nav-item nav-link">Home</a>
-                        @if(Auth::user())
-                        <a href="{{url('product')}}" class="nav-item nav-link">Product</a>
-                        <a href="{{url('product_categories')}}" class="nav-item nav-link">Category Product</a>
-                        <a href="{{url('brand')}}" class="nav-item nav-link">Brand</a>
-                        <a href="{{url('orders')}}" class="nav-item nav-link">Order</a>
-                        @endif
-                    </div>
-                </div>
-                @if (Route::current()->getName() == 'register' && Auth::user()==null)
-                <a href="{{url('login')}}" class="nav-item nav-link">Login</a>
-                @elseif (Route::current()->getName() == 'login' && Auth::user()==null)
-                <a href="{{url('register')}}" class="nav-item nav-link">Belum punya akun? Daftar...</a>
-                @else
-                <a href="{{url('logout')}}" class="nav-item nav-link">Logout</a>
-                @endif
-                @if(Auth::user())
-                <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                    <a href="" class="btn px-0">
-                        {{-- <i class="fas fa-heart text-primary"></i> --}}
-                        <span class="badge text-secondary"
-                            style="padding-bottom: 2px;">Selamat datang, {{Auth::user()->name}}</span>
+        <!-- sidebar-header  -->
+        {{-- <div class="sidebar-search">
+          <div>
+            <div class="input-group">
+              <input type="text" class="form-control search-menu" placeholder="Search...">
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div> --}}
+        <!-- sidebar-search  -->
+        @if(Auth::user())
+        <div class="sidebar-menu">
+          <ul>
+            <li class="header-menu">
+              <span>General</span>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+                <span class="badge badge-pill badge-warning">New</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Home
+                      {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                     </a>
-                    <a href="" class="btn px-0 ml-3">
-                        <i class="fas fa-shopping-cart text-primary"></i>
-                        <span class="badge text-secondary border border-secondary rounded-circle"
-                            style="padding-bottom: 2px;"></span>
-                    </a>
-
-                </div>
-                @endif
-            </nav>
+                  </li>
+                  {{-- <li>
+                    <a href="#">Dashboard 2</a>
+                  </li>
+                  <li>
+                    <a href="#">Dashboard 3</a>
+                  </li> --}}
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>E-commerce</span>
+                <span class="badge badge-pill badge-danger">3</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Orders</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="far fa-gem"></i>
+                <span>Product</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Product</a>
+                  </li>
+                  <li>
+                    <a href="#">Brand</a>
+                  </li>
+                  <li>
+                    <a href="#">Category</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-chart-line"></i>
+                <span>Charts</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Pie chart</a>
+                  </li>
+                  <li>
+                    <a href="#">Line chart</a>
+                  </li>
+                  <li>
+                    <a href="#">Bar chart</a>
+                  </li>
+                  <li>
+                    <a href="#">Histogram</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-globe"></i>
+                <span>Maps</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Google maps</a>
+                  </li>
+                  <li>
+                    <a href="#">Open street map</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="header-menu">
+              <span>Extra</span>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Documentation</span>
+                <span class="badge badge-pill badge-primary">Beta</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-calendar"></i>
+                <span>Calendar</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-folder"></i>
+                <span>Examples</span>
+              </a>
+            </li>
+          </ul>
         </div>
-    </div>
-</div>
+        <!-- sidebar-menu  -->
+        @endif
+      </div>
+      <!-- sidebar-content  -->
+      <div class="sidebar-footer">
+        {{-- <a href="#">
+          <i class="fa fa-bell"></i>
+          <span class="badge badge-pill badge-warning notification">3</span>
+        </a>
+        <a href="#">
+          <i class="fa fa-envelope"></i>
+          <span class="badge badge-pill badge-success notification">7</span>
+        </a>
+        <a href="#">
+          <i class="fa fa-cog"></i>
+          <span class="badge-sonar"></span>
+        </a> --}}
+        @if (Route::current()->getName() == 'register' && Auth::user()==null)
+        <a href="{{url('login')}}" class=""  style="background-color:green"><i class="fa fa-power-off"></i> Login</a>
+        @elseif (Route::current()->getName() == 'login' && Auth::user()==null)
+        <a href="{{url('register')}}" class=""  style="background-color:yellow">Belum punya akun? Daftar...</a>
+        @else
+        <a href="{{url('logout')}}" class=""  style="background-color:red"><i class="fa fa-power-off"></i>  Logout</a>
+        @endif
+        {{-- <a href="{{URL('logout')}}">
+          <i class="fa fa-power-off"></i> Logout
+        </a> --}}
+      </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <div class="container-fluid">
+        <h2>Cozy_underwear</h2>
+        <hr>
