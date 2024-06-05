@@ -101,13 +101,13 @@
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="#">Product</a>
+                    <a href="{{URL('product')}}">Product</a>
                   </li>
                   <li>
-                    <a href="#">Brand</a>
+                    <a href="{{URL('brand')}}">Brand</a>
                   </li>
                   <li>
-                    <a href="#">Category</a>
+                    <a href="{{URL('category')}}">Category</a>
                   </li>
                 </ul>
               </div>

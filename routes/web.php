@@ -30,8 +30,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 //Product
 Route::get('/product', [ProductController::class, 'index']);
-Route::get('/product/create', [ProductsController::class, 'store']);
-Route::get('/product/edit', [ProductsController::class, 'edit']);
+Route::get('/product/create', [ProductController::class, 'create']);
+Route::post('/product/store', [ProductController::class, 'store'])->name('products.store');  ;
+Route::get('/product/edit', [ProductController::class, 'edit']);
 //CategoryProduct
 Route::get('/product_categories', [ProductCategoryController::class, 'index']);
 Route::get('/product_categories/create', [ProductCategoryController::class, 'store']);
@@ -40,6 +41,10 @@ Route::get('/product_categories/edit', [ProductCategoryController::class, 'edit'
 Route::get('/brand', [BrandsController::class, 'index']);
 Route::get('/brand/create', [BrandsController::class, 'store']);
 Route::get('/brand/edit', [BrandsController::class, 'edit']);
+//Category
+Route::get('/category', [ProductCategoryController::class, 'index']);
+Route::get('/category/create', [ProductCategoryController::class, 'store']);
+Route::get('/category/edit', [ProductCategoryController::class, 'edit']);
 //Orders
 Route::get('/orders', [OrdersController::class, 'index']);
 Route::get('/orders/create', [OrdersController::class, 'store']);
