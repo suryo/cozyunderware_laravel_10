@@ -38,10 +38,10 @@ class BrandsController extends Controller
     {
         $request->validate([
             'product_brand' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|integer',
         ]);
 
-        Brand::create($request->all());
+        Brands::create($request->all());
 
         return redirect()->route('brands.index')
             ->with('success', 'Brand created successfully.');
@@ -61,12 +61,13 @@ class BrandsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Brands  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(Brands $brand,$id)
     {
-        return view('brands.edit', compact('brand'));
+        $brands=Brands::where('id',$id)->get();
+        return view('brands.edit', compact('brands'));
     }
 
     /**
@@ -76,14 +77,13 @@ class BrandsController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, Brands $brand, $id)
     {
         $request->validate([
             'product_brand' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|integer',
         ]);
-
-        $brand->update($request->all());
+        $brand->where('id',$id)->update($request->except(['_token']));
 
         return redirect()->route('brands.index')
             ->with('success', 'Brand updated successfully');
@@ -95,9 +95,9 @@ class BrandsController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(Brands $brand,$id)
     {
-        $brand->delete();
+        $brand::where('id',$id)->delete();
 
         return redirect()->route('brands.index')
             ->with('success', 'Brand deleted successfully');

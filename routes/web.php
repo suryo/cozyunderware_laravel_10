@@ -38,13 +38,19 @@ Route::get('/product_categories', [ProductCategoryController::class, 'index']);
 Route::get('/product_categories/create', [ProductCategoryController::class, 'store']);
 Route::get('/product_categories/edit', [ProductCategoryController::class, 'edit']);
 //Brand
-Route::get('/brand', [BrandsController::class, 'index']);
-Route::get('/brand/create', [BrandsController::class, 'store']);
-Route::get('/brand/edit', [BrandsController::class, 'edit']);
+Route::get('/brand', [BrandsController::class, 'index'])->name('brands.index');
+Route::get('/brand/create', [BrandsController::class, 'create']);
+Route::post('/brand/store', [BrandsController::class, 'store'])->name('brands.store');  ;
+Route::post('/brand/delete/{id}', [BrandsController::class, 'destroy']);
+Route::get('/brand/edit/{id}', [BrandsController::class, 'edit']);
+Route::post('/brand/update/{id}', [BrandsController::class, 'update'])->name('brands.update');  ;
 //Category
-Route::get('/category', [ProductCategoryController::class, 'index']);
-Route::get('/category/create', [ProductCategoryController::class, 'store']);
-Route::get('/category/edit', [ProductCategoryController::class, 'edit']);
+Route::get('/category', [ProductCategoryController::class, 'index'])->name('product_categories.index');
+Route::get('/category/create', [ProductCategoryController::class, 'create']);
+Route::post('/category/store', [ProductCategoryController::class, 'store'])->name('product_categories.store');  ;
+Route::post('/category/delete/{id}', [ProductCategoryController::class, 'destroy']);
+Route::get('/category/edit/{id}', [ProductCategoryController::class, 'edit']);
+Route::post('/category/update/{id}', [ProductCategoryController::class, 'update'])->name('product_categories.update');  ;
 //Orders
 Route::get('/orders', [OrdersController::class, 'index']);
 Route::get('/orders/create', [OrdersController::class, 'store']);

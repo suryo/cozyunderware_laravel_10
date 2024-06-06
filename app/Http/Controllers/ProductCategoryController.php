@@ -38,7 +38,7 @@ class ProductCategoryController extends Controller
     {
         $request->validate([
             'product_category_name' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required',
         ]);
 
         ProductCategory::create($request->all());
@@ -64,8 +64,9 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductCategory $productCategory)
+    public function edit(ProductCategory $productCategory,$id)
     {
+        $productCategory=ProductCategory::where('id',$id)->get();
         return view('product_categories.edit', compact('productCategory'));
     }
 
@@ -76,14 +77,14 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, ProductCategory $productCategory,$id)
     {
         $request->validate([
             'product_category_name' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required',
         ]);
 
-        $productCategory->update($request->all());
+        $productCategory->where('id',$id)->update($request->except(['_token']));
 
         return redirect()->route('product_categories.index')
             ->with('success', 'Product category updated successfully');
@@ -95,9 +96,9 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy(ProductCategory $productCategory,$id)
     {
-        $productCategory->delete();
+        $productCategory->where('id',$id)->delete();
 
         return redirect()->route('product_categories.index')
             ->with('success', 'Product category deleted successfully');
