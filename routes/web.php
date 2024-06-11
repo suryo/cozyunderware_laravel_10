@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +19,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::middleware('auth')->group(function () {
+//Home
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [HomeController::class, 'index']);
+//Product
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/create', [ProductController::class, 'create']);
+Route::post('/product/store', [ProductController::class, 'store'])->name('products.store');  ;
+Route::get('/product/edit', [ProductController::class, 'edit']);
+//CategoryProduct
+Route::get('/product_categories', [ProductCategoryController::class, 'index']);
+Route::get('/product_categories/create', [ProductCategoryController::class, 'store']);
+Route::get('/product_categories/edit', [ProductCategoryController::class, 'edit']);
+//Brand
+Route::get('/brand', [BrandsController::class, 'index'])->name('brands.index');
+Route::get('/brand/create', [BrandsController::class, 'create']);
+Route::post('/brand/store', [BrandsController::class, 'store'])->name('brands.store');  ;
+Route::post('/brand/delete/{id}', [BrandsController::class, 'destroy']);
+Route::get('/brand/edit/{id}', [BrandsController::class, 'edit']);
+Route::post('/brand/update/{id}', [BrandsController::class, 'update'])->name('brands.update');  ;
+//Category
+Route::get('/category', [ProductCategoryController::class, 'index'])->name('product_categories.index');
+Route::get('/category/create', [ProductCategoryController::class, 'create']);
+Route::post('/category/store', [ProductCategoryController::class, 'store'])->name('product_categories.store');  ;
+Route::post('/category/delete/{id}', [ProductCategoryController::class, 'destroy']);
+Route::get('/category/edit/{id}', [ProductCategoryController::class, 'edit']);
+Route::post('/category/update/{id}', [ProductCategoryController::class, 'update'])->name('product_categories.update');  ;
+//Orders
+Route::get('/orders', [OrdersController::class, 'index']);
+Route::get('/orders/create', [OrdersController::class, 'store']);
+Route::get('/orders/edit', [OrdersController::class, 'edit']);
 });
+
+//Login
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('PostLogin', [LoginController::class, 'login'])->name('PostLogin');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+//Daftar
+Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('PostReg', [RegisterController::class, 'create'])->name('PostReg');
+
+// Route::get('/home', function () {
+//     return view('home');
+// })->middleware('auth');
