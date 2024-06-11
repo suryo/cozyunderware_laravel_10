@@ -88,7 +88,10 @@
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="#">Orders</a>
+                    <a href="{{URL('orders')}}">Order</a>
+                  </li>
+                  <li>
+                    <a href="{{URL('order_details')}}">Order Detail</a>
                   </li>
                 </ul>
               </div>

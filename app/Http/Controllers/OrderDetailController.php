@@ -14,9 +14,10 @@ class OrderDetailController extends Controller
      */
     public function index()
     {
-        $orderDetails = OrderDetail::all();
-        return view('order_details.index', compact('orderDetails'));
+        $orderDetails = OrderDetail::with('product')->get();
+        return view('OrderDetail.index', compact('orderDetails'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +26,7 @@ class OrderDetailController extends Controller
      */
     public function create()
     {
-        return view('order_details.create');
+        return view('OrderDetail.create');
     }
 
     /**

@@ -2,28 +2,26 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Edit Order Detail</div>
-
-                    <div class="card-body">
-                        <form action="{{ route('order_details.update', $orderDetail->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="form-group">
-                                <label for="nomerorder">Order Number:</label>
-                                <input type="text" name="nomerorder" id="nomerorder" class="form-control" value="{{ $orderDetail->nomerorder }}" required>
-                            </div>
-                            <!-- Add more form fields for other attributes -->
-                            <button type="submit" class="btn btn-primary">Update Order Detail</button>
-                        </form>
-                    </div>
-                </div>
+        <h1>Edit Order Detail</h1>
+        <form action="{{ route('order_details.update', $orderDetail->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="nomerorder">Nomer Order</label>
+                <input type="number" name="nomerorder" class="form-control" id="nomerorder" value="{{ $orderDetail->nomerorder }}" required>
             </div>
-        </div>
-    </div>
-@endsection
-
-
-
+            <div class="form-group">
+                <label for="idproduct">ID Product</label>
+                <input type="number" name="idproduct" class="form-control" id="idproduct" value="{{ $orderDetail->idproduct }}" required>
+            </div>
+            <div class="form-group">
+                <label for="hargaproduk">Harga Produk</label>
+                <input type="number" name="hargaproduk" class="form-control" id="hargaproduk" value="{{ $orderDetail->hargaproduk }}" required>
+            </div>
+            <div class="form-group">
+                <label for="qty">Qty</label>
+                <input type="number" name="qty" class="form-control" id="qty" value="{{ $orderDetail->qty }}" required>
+            </div>
+            <div class="form-group">
+                <label for="subtotalproduk">Subtotal Produk</label>
+                <input type="number

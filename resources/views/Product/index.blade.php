@@ -8,7 +8,7 @@
                     <div class="card-header">Product List</div>
 
                     <div class="card-body">
-                        <a href="" class="btn btn-primary mb-3">Add Product</a>
+                        <a href="/product/create" class="btn btn-primary mb-3">Add Product</a>
 
                         @if ($products->isEmpty())
                             <p>No product found.</p>

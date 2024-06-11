@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,11 +8,8 @@ class OrderDetail extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'order_details';
+
     protected $fillable = [
         'nomerorder',
         'idproduct',
@@ -27,34 +23,10 @@ class OrderDetail extends Model
         'deleted',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'nomerorder' => 'integer',
-        'idproduct' => 'integer',
-        'hargaproduk' => 'integer',
-        'qty' => 'integer',
-        'subtotalproduk' => 'integer',
-        'rating' => 'integer',
-        'deleted' => 'boolean',
-    ];
-
-    /**
-     * Get the product associated with the order detail.
-     */
     public function product()
     {
         return $this->belongsTo(Product::class, 'idproduct');
     }
 
-    /**
-     * Get the order associated with the order detail.
-     */
-    public function order()
-    {
-        return $this->belongsTo(Order::class, 'nomerorder');
-    }
+    // You can add other relationships and methods as needed
 }

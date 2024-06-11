@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BrandsController;
@@ -29,7 +30,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [HomeController::class, 'index']);
 //Product
-Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create']);
 Route::post('/product/store', [ProductController::class, 'store'])->name('products.store');  ;
 Route::get('/product/edit', [ProductController::class, 'edit']);
@@ -52,9 +53,24 @@ Route::post('/category/delete/{id}', [ProductCategoryController::class, 'destroy
 Route::get('/category/edit/{id}', [ProductCategoryController::class, 'edit']);
 Route::post('/category/update/{id}', [ProductCategoryController::class, 'update'])->name('product_categories.update');  ;
 //Orders
-Route::get('/orders', [OrdersController::class, 'index']);
-Route::get('/orders/create', [OrdersController::class, 'store']);
-Route::get('/orders/edit', [OrdersController::class, 'edit']);
+Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+Route::get('/orders/create', [OrdersController::class, 'create']);
+Route::post('/orders/store', [OrdersController::class, 'store'])->name('orders.store');  ;
+Route::post('/orders/delete/{id}', [OrdersController::class, 'destroy']);
+Route::get('/orders/edit/{id}', [OrdersController::class, 'edit']);
+Route::post('/orders/update/{id}', [OrdersController::class, 'update'])->name('orders.update');  ;
+//OrdersDetail
+Route::get('/order_details', [OrderDetailController::class, 'index'])->name('order_details.index');
+Route::get('/order_details/create', [OrderDetailController::class, 'create'])->name('order_details.create');
+Route::post('/order_details/store', [OrderDetailController::class, 'store'])->name('order_details.store');  ;
+Route::post('/order_details/delete/{id}', [OrderDetailController::class, 'destroy']);
+Route::get('/order_details/edit/{id}', [OrderDetailController::class, 'edit']);
+Route::post('/order_details/update/{id}', [OrderDetailController::class, 'update'])->name('order_details.update');  ;
+//Category
+//Rekomendasi Product
+Route::get('/ProductRekomendasi', [ProductRekomendasiContoller::class, 'index']);
+Route::get('/ProductRekomendasi/create', [ProductRekomendasiContoller::class, 'store']);
+Route::get('/ProductRekomendasi/edit', [ProductRekomendasiContoller::class, 'edit']);
 });
 
 //Login

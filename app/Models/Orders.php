@@ -9,11 +9,6 @@ class Orders extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'nomerorder',
         'iduser',
@@ -43,33 +38,10 @@ class Orders extends Model
         'deleted',
         'shipping_id',
         'country_code',
-        'shipping_status',
+        'shipping_status'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
-        'iduser' => 'integer',
-        'itemsubtotal' => 'integer',
-        'tax' => 'integer',
-        'shippingprice' => 'integer',
-        'ordertotal' => 'integer',
-        'payment' => 'integer',
-        'payment_id' => 'integer',
-        'shipping_id' => 'integer',
-        'country_code' => 'integer',
-        'shipping_status' => 'integer',
-        'deleted' => 'boolean',
+        'deleted' => 'boolean'
     ];
-
-    /**
-     * Get the user associated with the order.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'iduser');
-    }
 }

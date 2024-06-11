@@ -8,7 +8,7 @@
                     <div class="card-header">Order List</div>
 
                     <div class="card-body">
-                        <a href="" class="btn btn-primary mb-3">Create Order</a>
+                        <a href="/orders/create" class="btn btn-primary mb-3">Create Order</a>
 
                         @if ($orders->isEmpty())
                             <p>No orders found.</p>
@@ -20,6 +20,8 @@
                                         <th>Order Number</th>
                                         <th>User ID</th>
                                         <th>Status</th>
+                                        <th>Itemsubtotal</th>
+                                        <th>pengiriman</th>
                                         <!-- Add more columns if needed -->
                                         <th>Actions</th>
                                     </tr>
@@ -33,8 +35,8 @@
                                             <td>{{ $order->status }}</td>
                                             <!-- Add more columns if needed -->
                                             <td>
-                                                <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST" class="d-inline">
+                                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
