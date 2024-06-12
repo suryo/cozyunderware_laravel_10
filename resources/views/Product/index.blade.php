@@ -35,7 +35,7 @@
                                             <td>{{ $product->product_price }}</td>
                                             <td>{{ $product->status }}</td>
                                             <td>
-                                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="{{URL('product/edit/'.$product->id.'/')}}" class="btn btn-primary btn-sm">Edit</a>
                                                 <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

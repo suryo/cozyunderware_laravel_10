@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 11/06/2024 19:58:36
+ Date: 12/06/2024 12:52:27
 */
 
 SET NAMES utf8mb4;
@@ -29,11 +29,33 @@ CREATE TABLE `brands`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of brands
 -- ----------------------------
+INSERT INTO `brands` VALUES (1, 'Fema', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (2, 'Golden Nick', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (3, 'Lorina', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (4, 'Nonic', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (5, 'Viena', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (6, 'Melina', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (7, 'Yakuza', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (8, 'Assa', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (9, 'Shogun', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (10, 'Optima', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (11, 'Gents Club', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (12, 'Gtman', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (13, 'Roumei', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (14, 'D\'Gest', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (15, 'Toyazi', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (16, 'Ropolo', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (17, 'Vegasa', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (18, 'Swan Brand', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (19, 'Guda', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (20, 'Xismie', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (21, 'Sport Bra', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
+INSERT INTO `brands` VALUES (22, 'Tangtop', 'Aktif', 'false', '2024-06-12 12:47:49', '2024-06-12 12:47:49');
 
 -- ----------------------------
 -- Table structure for carts
@@ -368,11 +390,30 @@ CREATE TABLE `product_categories`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of product_categories
 -- ----------------------------
+INSERT INTO `product_categories` VALUES (1, 'Bra busa cantolan 2', 'Aktif', 'false', '2024-06-11 14:17:24', '2024-06-12 05:51:23');
+INSERT INTO `product_categories` VALUES (2, 'Bra busa cantolan 3', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (3, 'Bra tanpa busa cantolan 2', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (4, 'Bra tanpa busa cantolan 3', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (5, 'Kaos dalam anak wanita', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (6, 'Kaos dalam anak pria', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (7, 'Kaos dalam lorina', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (8, 'Kaos dalam pria ', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (9, 'Kaos dalam wanita ', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (10, 'Celana dalam wanita ', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (11, 'Celana dalam pria', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (12, 'Shiot', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (13, 'Tangtop', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (14, 'Leging', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (15, 'Androk ', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (16, 'Miniset Anak ', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (17, 'Miniset Dewasa', 'Aktif', 'false', '2024-06-12 11:17:00', '2024-06-12 11:17:11');
+INSERT INTO `product_categories` VALUES (18, 'Celana dalam anak wanita', 'Aktif', 'false', '2024-06-12 11:45:13', '2024-06-12 11:45:17');
+INSERT INTO `product_categories` VALUES (19, 'Celana dalam anak pria', 'Aktif', 'false', '2024-06-12 11:45:13', '2024-06-12 11:45:17');
 
 -- ----------------------------
 -- Table structure for products
@@ -393,19 +434,41 @@ CREATE TABLE `products`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES (1, '', 0, 'a', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (2, '', 0, 'b', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (3, '', 0, 'c', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (5, '', 0, 'd', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (6, '', 0, 'e', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (7, '', 0, 'f', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (9, '', 0, 'g', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
-INSERT INTO `products` VALUES (10, '', 0, 'h', '', 0, 0, NULL, '', 'false', NULL, NULL, '');
+INSERT INTO `products` VALUES (0, '', 1, 'Bra Roumei', 'Bra busa cantolan 3', 13, 25000, NULL, 'Aktif', 'false', '2024-06-12 12:50:18', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (2, '', 2, 'Bra Toyazi', 'Bra busa cantolan 3', 15, 25000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (3, '', 3, 'Bra Fema', 'Bra busa cantolan 2', 1, 25000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (4, '', 4, 'Bra Roumei', 'Bra busa cantolan 2', 13, 23000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (5, '', 5, 'Bra Sport Bra', 'Bra tanpa busa cantolan 2', 21, 15000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (6, '', 6, 'Bra Lorina', 'Bra tanpa busa cantolan 3', 3, 15000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (7, '', 7, 'Bra Lorina', 'Bra tanpa busa cantolan 2', 3, 12500, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (8, '', 8, 'Celana dalam wanita melina', 'Celana dalam wanita', 6, 5000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (9, '', 9, 'Celana dalam wanita lorina', 'Androk', 8, 20000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', 'produk-1');
+INSERT INTO `products` VALUES (10, '', 10, 'Celana dalam wanita fema', 'Miniset anak', 8, 10000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', 'produk-1');
+INSERT INTO `products` VALUES (11, '', 11, 'Celana dalam wanita golden nick ', 'Miniset dewasa', 20, 20000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', 'produk-1');
+INSERT INTO `products` VALUES (12, '', 12, 'Celana dalam anak wanita viena', 'Shiot', 14, 15000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', 'produk-2');
+INSERT INTO `products` VALUES (13, '', 13, 'Celana dalam anak pria yakuza', 'Celana dalam wanita', 3, 10000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (14, '', 14, 'Celana dalam pria optima', 'Celana dalam wanita', 1, 15000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (15, '', 15, 'Celana dalam pria gent club', 'Celana dalam wanita', 2, 10000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (16, '', 16, 'Celana dalam pria boxer ropolo', 'Celana dalam anak wanita', 5, 5000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (17, '', 17, 'Celana dalam pria boxer fema', 'Celana dalam anak pria', 7, 5000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (18, '', 18, 'Celana dalam pria boxer guda', 'Celana dalam pria', 10, 40000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (19, '', 19, 'Celana dalam pria shogun', 'Celana dalam pria', 11, 30000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (20, '', 20, 'Kaos dalam anak nonic', 'Celana dalam pria', 16, 60000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (21, '', 21, 'Kaos dalam lorina', 'Celana dalam pria', 1, 60000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (22, '', 22, 'Kaos dalam wanita assa', 'Celana dalam pria', 19, 60000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (23, '', 23, 'Kaos dalam pria swan brand', 'Celana dalam pria', 9, 25000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (24, '', 24, 'Kaos dalam pria vegasa', 'Kaos dalam anak', 4, 5000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (25, '', 25, 'Tangtop', 'Kaos dalam anak', 3, 10000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (26, '', 26, 'Leging', 'Kaos dalam wanita', 8, 10000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (27, '', 27, 'Androk', 'Kaos dalam pria', 18, 25000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (28, '', 28, 'Miniset Anak', 'Kaos dalam pria', 17, 15000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (29, '', 29, 'Miniset Dewasa', 'Tangtop', 22, 25000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
+INSERT INTO `products` VALUES (30, '', 30, 'Shiot', 'Leging', 14, 35000, NULL, 'Aktif', 'false', '2024-06-12 12:49:08', '2024-06-12 12:50:20', '');
 
 -- ----------------------------
 -- Table structure for products_recomendation
