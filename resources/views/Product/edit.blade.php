@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+    @foreach ($brand_name as $bn)
+        @php
+            $brandId = $bn->id;
+            $brandName = $bn->product_brand;
+        @endphp
+    @endforeach
+    @foreach ($category_name as $cn)
+        @php
+            $catId = $cn->id;
+            $catName = $cn->product_category_name;
+        @endphp
+    @endforeach
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -17,7 +29,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="product_category">Category:</label>
-                                <input type="number" name="product_category" id="product_category" class="form-control" value="{{ $product->product_category }}" required>
+                                <select class="form-control" name="product_category" id="product_category" required>
+                                    <option value="{{ $catId }}" selected>{{ $catName }}</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->product_category_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="product_name">Name:</label>
@@ -29,7 +46,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="product_brand">Brand:</label>
-                                <input type="number" name="product_brand" id="product_brand" class="form-control" value="{{ $product->product_brand }}" required>
+                                <select class="form-control" name="product_brand" id="product_brand" required>
+                                    <option value="{{ $brandId }}" selected>{{ $brandName }}</option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->product_brand }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="product_price">Price:</label>
@@ -43,4 +65,11 @@
                                 <label for="status">Status:</label>
                                 <input type="text" name="status" id="status" class="form-control" value="{{ $product->status }}" required>
                             </div>
-                            <button type="submit" class="btn btn
+                            <button type="submit" class="btn btn-primary">Update Product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

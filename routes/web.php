@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProductRecomendationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +34,8 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create']);
 Route::post('/product/store', [ProductController::class, 'store'])->name('products.store'); ;
-Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
-Route::post('/product/update{id}', [ProductController::class, 'update'])->name('product.update'); ;
+Route::get('/product/edit/{product}', [ProductController::class, 'edit']);
+Route::post('/product/update{product}', [ProductController::class, 'update'])->name('product.update'); ;
 //CategoryProduct
 Route::get('/product_categories', [ProductCategoryController::class, 'index']);
 Route::get('/product_categories/create', [ProductCategoryController::class, 'store']);
@@ -69,9 +70,9 @@ Route::get('/order_details/edit/{id}', [OrderDetailController::class, 'edit']);
 Route::post('/order_details/update/{id}', [OrderDetailController::class, 'update'])->name('order_details.update');  ;
 //Category
 //Rekomendasi Product
-Route::get('/ProductRekomendasi', [ProductRekomendasiContoller::class, 'index']);
-Route::get('/ProductRekomendasi/create', [ProductRekomendasiContoller::class, 'store']);
-Route::get('/ProductRekomendasi/edit', [ProductRekomendasiContoller::class, 'edit']);
+Route::get('/ProductRekomendasi', [ProductRecomendationController::class, 'index']);
+Route::get('/ProductRekomendasi/create', [ProductRecomendationController::class, 'store']);
+Route::get('/ProductRekomendasi/edit', [ProductRecomendationController::class, 'edit']);
 });
 
 //Login

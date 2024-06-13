@@ -9,6 +9,18 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'products';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'sku',
         'product_category',
@@ -19,22 +31,33 @@ class Product extends Model
         'fileimages',
         'status',
         'deleted',
-        'slug'
+        'slug',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = [
-        'deleted' => 'boolean'
+        'deleted' => 'boolean',
     ];
 
-    // Relationship with ProductCategory
+    /**
+     * Get the category that owns the product.
+     */
     public function category()
     {
         return $this->belongsTo(ProductCategory::class, 'product_category');
     }
 
-    // Relationship with ProductBrand
+    /**
+     * Get the brand that owns the product.
+     */
     public function brand()
     {
-        return $this->belongsTo(Brand::class, 'product_brand');
+        return $this->belongsTo(ProductBrand::class, 'product_brand');
     }
+
+    // You can add more relationships and custom methods here
 }
