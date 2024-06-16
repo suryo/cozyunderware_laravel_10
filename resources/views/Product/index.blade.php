@@ -21,6 +21,7 @@
                                         <th>Category</th>
                                         <th>Name</th>
                                         <th>Price</th>
+                                        <th>Image</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -33,6 +34,9 @@
                                             <td>{{ $product->product_category }}</td>
                                             <td>{{ $product->product_name }}</td>
                                             <td>{{ $product->product_price }}</td>
+                                            <td>
+                                                <img src="{{ !empty($product->fileimages) ? $product->fileimages : asset('assets/logo/LOGO FIKS-min.jpg')  }}" width="100px" height="100px" alt="">
+                                            </td>
                                             <td>{{ $product->status }}</td>
                                             <td>
                                                 <a href="{{URL('product/edit/'.$product->id.'/')}}" class="btn btn-primary btn-sm">Edit</a>
