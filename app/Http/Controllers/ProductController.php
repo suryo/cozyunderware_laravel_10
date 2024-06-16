@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Brands;
 use App\Models\ProductCategory;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    use ImageUploadTrait;
     public function index()
     {
         $products = Product::all();
@@ -31,6 +34,7 @@ class ProductController extends Controller
             'product_detail' => 'required|string',
             'product_brand' => 'required|numeric',
             'product_price' => 'required|numeric',
+            'fileimages' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|string',
         ]);
         $data = [
@@ -40,9 +44,9 @@ class ProductController extends Controller
             "product_detail" => $request->product_detail,
             "product_brand" => $request->product_brand,
             "product_price" => $request->product_price,
-            "fileimages" => "",
+            "fileimages" => $this->updateImage($request,'fileimages','upload/product'),
             "status" => $request->status,
-            "slug" => $request->product_name,
+            "slug" => Str::slug($request->product_name),
         ];
 
         Product::create($data);
