@@ -62,8 +62,8 @@
                                 <label for="status">Status:</label>
                                 {{-- <input type="number" name="product_category" id="product_category" class="form-control" required> --}}
                                 <select class="form-control"  name="status" id="status">
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Non-Aktif</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Non-Aktif">Non-Aktif</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Product</button>
