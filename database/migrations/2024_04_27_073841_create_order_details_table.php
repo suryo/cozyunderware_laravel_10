@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomerorder');
+            $table->integer('idorder');
+            // $table->integer('nomerorder');
             $table->unsignedBigInteger('idproduct');
             $table->integer('hargaproduk');
             $table->integer('qty');
@@ -25,9 +26,9 @@ return new class extends Migration
             $table->enum('deleted', ['true', 'false'])->default('false');
             $table->timestamps();
         });
-        
-        
-        
+
+
+
     }
 
     /**

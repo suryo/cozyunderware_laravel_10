@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ class OrderDetail extends Model
     protected $table = 'order_details';
 
     protected $fillable = [
-        'nomerorder',
+        'idorder',
         'idproduct',
         'hargaproduk',
         'qty',
@@ -28,5 +29,9 @@ class OrderDetail extends Model
         return $this->belongsTo(Product::class, 'idproduct');
     }
 
+    public function orders()
+    {
+        return $this->belongsTo(Orders::class, 'idorder');
+    }
     // You can add other relationships and methods as needed
 }
