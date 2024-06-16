@@ -20,7 +20,7 @@
                     <div class="card-header">Edit Product</div>
 
                     <div class="card-body">
-                        <form action="{{ route('product.update', $product->id) }}" method="POST">
+                        <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -32,7 +32,7 @@
                                 <select class="form-control" name="product_category" id="product_category" required>
                                     <option value="{{ $catId }}" selected>{{ $catName }}</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->product_category_name }}</option>
+                                        <option value="{{ $category->id }} {{ $category->id == $product->product_category ? 'selected' : '' }}">{{ $category->product_category_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -49,7 +49,7 @@
                                 <select class="form-control" name="product_brand" id="product_brand" required>
                                     <option value="{{ $brandId }}" selected>{{ $brandName }}</option>
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand->id }}">{{ $brand->product_brand }}</option>
+                                        <option value="{{ $brand->id }}" {{ $brand->id == $product->product_brand ? 'selected' : '' }}>{{ $brand->product_brand }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -59,11 +59,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="fileimages">Image:</label>
-                                <input type="file" name="fileimages" id="fileimages" class="form-control-file">
+                                <input type="file" name="fileimages" id="fileimages" value="{{ $product->fileimages }}" class="form-control-file">
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="status">Status:</label>
                                 <input type="text" name="status" id="status" class="form-control" value="{{ $product->status }}" required>
+                            </div> --}}
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                {{-- <input type="number" name="product_category" id="product_category" class="form-control" required> --}}
+                                <select class="form-control"  name="status" id="status">
+                                    <option value="Aktif" {{ $product->status == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="Non-Aktif" {{ $product->status == 'Non-Aktif' ? 'selected' : '' }}>Non-Aktif</option>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Update Product</button>
                         </form>
