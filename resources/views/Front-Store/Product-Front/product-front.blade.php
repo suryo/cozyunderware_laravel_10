@@ -190,9 +190,9 @@
                         <section class="panel">
                             <div class="pro-img-box">
                                 <img src="{{ !empty($product->fileimages) ? asset($product->fileimages) : asset('assets/logo/LOGO FIKS-min.jpg') }}"
-                                    alt="" class="pro-img"/>
+                                    alt="" class="pro-img" />
                                 {{-- <img src="https://www.bootdey.com/image/250x220/FFB6C1/000000" alt="" /> --}}
-                                <a href="#" class="adtocart">
+                                <a href="{{ route('front.add.cart', $product->id) }}" class="adtocart">
                                     <i class="fa fa-shopping-cart"></i>
                                 </a>
                             </div>
