@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->string('review')->nullable();
             $table->integer('rating')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->enum('deleted', ['true', 'false'])->default('false');
             $table->timestamps();
         });

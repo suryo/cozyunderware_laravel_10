@@ -17,10 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('iduser');
             $table->string('status');
             $table->integer('itemsubtotal');
-            $table->integer('tax');
-            $table->integer('shippingprice');
+            $table->integer('tax')->nullable();
+            $table->integer('shippingprice')->nullable();
             $table->integer('ordertotal');
-            $table->integer('payment');
+            $table->integer('payment')->nullable();
             $table->string('pengiriman');
             $table->string('namalengkap');
             $table->string('firstname');
@@ -34,15 +34,15 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->text('addcatatan')->nullable();
-            $table->integer('payment_id');
+            $table->integer('payment_id')->nullable();
             $table->string('payment_method');
             $table->string('payment_status');
             $table->string('tracking_number')->nullable();
             $table->enum('deleted', ['true', 'false'])->default('false');
+            $table->integer('shipping_id')->nullable();
+            $table->integer('country_code')->nullable();
+            $table->integer('shipping_status')->nullable();
             $table->timestamps();
-            $table->integer('shipping_id');
-            $table->integer('country_code');
-            $table->integer('shipping_status');
         });
     }
 
