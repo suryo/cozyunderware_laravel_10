@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FrontCartController;
 use App\Http\Controllers\FrontDashboardController;
 use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\MetodeRekomendationProductController;
@@ -31,12 +32,16 @@ use App\Http\Controllers\ProductRecomendationController;
 Route::middleware('auth')->group(function () {
     // FRONT PRODUCT
 
-    Route::get('/front/product',[FrontProductController::class,'index'])->name('front.product');
-    Route::get('/front/recomendation',[FrontProductController::class,'recomendation'])->name('front.recomendation');
-    Route::get('/front/product/recomendation',[MetodeRekomendationProductController::class,'recommend'])->name('front.product.recomendation');
+    Route::get('/front/product', [FrontProductController::class, 'index'])->name('front.product');
+    Route::get('/front/recomendation', [FrontProductController::class, 'recomendation'])->name('front.recomendation');
+    Route::get('/front/product/recomendation', [MetodeRekomendationProductController::class, 'recommend'])->name('front.product.recomendation');
+    Route::get('/front/cart', [FrontCartController::class, 'index'])->name('front.cart');
+    Route::get('/front/cart/{product}', [FrontCartController::class, 'addToCart'])->name('front.add.cart');
+    Route::get('/front/cart/minus/{product}', [FrontCartController::class, 'minus'])->name('front.add.minus.cart');
+    Route::get('/front/cart/delete/{product}', [FrontCartController::class, 'delete'])->name('front.delete.cart');
     //Home
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/dashboard',[FrontDashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard', [FrontDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/home', [HomeController::class, 'index']);
     //Product
