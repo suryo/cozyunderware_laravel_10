@@ -56,7 +56,7 @@ class Product extends Model
      */
     public function brand()
     {
-        return $this->belongsTo(ProductBrand::class, 'product_brand');
+        return $this->belongsTo(Brands::class, 'product_brand');
     }
 
     // You can add more relationships and custom methods here
