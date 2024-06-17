@@ -19,9 +19,9 @@
                                         <th>ID</th>
                                         <th>Order Number</th>
                                         <th>User ID</th>
-                                        <th>Status</th>
+                                        {{-- <th>Status</th> --}}
                                         <th>Itemsubtotal</th>
-                                        <th>pengiriman</th>
+                                        {{-- <th>pengiriman</th> --}}
                                         <!-- Add more columns if needed -->
                                         <th>Actions</th>
                                     </tr>
@@ -32,10 +32,10 @@
                                             <td>{{ $order->id }}</td>
                                             <td>{{ $order->nomerorder }}</td>
                                             <td>{{ $order->iduser }}</td>
-                                            <td>{{ $order->status }}</td>
+                                            <td>{{ $order->ordertotal }}</td>
                                             <!-- Add more columns if needed -->
                                             <td>
-                                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="{{ route('front.detail.order',$order->id) }}" class="btn btn-primary btn-sm">Detail</a>
                                                 <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

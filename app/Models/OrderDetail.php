@@ -31,7 +31,7 @@ class OrderDetail extends Model
 
     public function orders()
     {
-        return $this->belongsTo(Orders::class, 'idorder');
+        return $this->belongsTo(Orders::class, 'idorder','id');
     }
     // You can add other relationships and methods as needed
 }

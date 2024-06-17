@@ -10,6 +10,7 @@ use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FrontCartController;
+use App\Http\Controllers\FrontCheckoutController;
 use App\Http\Controllers\FrontDashboardController;
 use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\MetodeRekomendationProductController;
@@ -31,14 +32,25 @@ use App\Http\Controllers\ProductRecomendationController;
 
 Route::middleware('auth')->group(function () {
     // FRONT PRODUCT
-
     Route::get('/front/product', [FrontProductController::class, 'index'])->name('front.product');
     Route::get('/front/recomendation', [FrontProductController::class, 'recomendation'])->name('front.recomendation');
+
+    // FRONT PRODUCT REKOMENDASI
     Route::get('/front/product/recomendation', [MetodeRekomendationProductController::class, 'recommend'])->name('front.product.recomendation');
+
+    // FRONT CART
     Route::get('/front/cart', [FrontCartController::class, 'index'])->name('front.cart');
     Route::get('/front/cart/{product}', [FrontCartController::class, 'addToCart'])->name('front.add.cart');
     Route::get('/front/cart/minus/{product}', [FrontCartController::class, 'minus'])->name('front.add.minus.cart');
     Route::get('/front/cart/delete/{product}', [FrontCartController::class, 'delete'])->name('front.delete.cart');
+
+    // FRONT CHECKOUT
+    Route::get('/front/checkout',[FrontCheckoutController::class,'index'])->name('front.checkout');
+    Route::post('/front/checkout/orders',[FrontCheckoutController::class,'orders'])->name('front.checkout.orders');
+
+    // FRONT ORDERS
+    Route::get('/front/detail/order/{order}',[FrontCheckoutController::class,'getOrderWithDetails'])->name('front.detail.order');
+
     //Home
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [FrontDashboardController::class, 'index'])->name('dashboard');

@@ -110,6 +110,16 @@
                             </div> --}}
                         </li>
                         <li class="sidebar-dropdown">
+                            <a href="{{ route('orders.index') }}">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span>My Orders</span>
+                                {{-- <span>E-commerce</span> --}}
+                                {{-- <span
+                                    class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
+                                </span> --}}
+                            </a>
+                        </li>
+                        <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="far fa-gem"></i>
                                 <span>Product</span>

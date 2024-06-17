@@ -44,4 +44,9 @@ class Orders extends Model
     protected $casts = [
         'deleted' => 'boolean'
     ];
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'idorder', 'id');
+    }
 }

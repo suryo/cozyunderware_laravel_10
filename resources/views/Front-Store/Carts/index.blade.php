@@ -204,12 +204,14 @@
                         </div>
                     @endforeach
 
-                    <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span>
+                    <div class="back-to-shop"><a href="{{ route('front.product') }}">&leftarrow;<span
+                                class="text-muted">Back to shop</span></a>
                     </div>
                 @else
                     <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
-                            <a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span>
+                            <a href="{{ route('front.product') }}">&leftarrow;<span class="text-muted">Back to
+                                    shop</span></a>
                         </div>
                     </div>
                 @endif
@@ -282,7 +284,7 @@
                     <div class="col text-right">Rp. {{ $subtotal }}</div>
                 </div>
                 @if (App\Services\CartService::getUserCartCount() > 0)
-                    <a href="#" class="btn">CHECKOUT</a>
+                    <a href="{{ route('front.checkout') }}" class="btn">CHECKOUT</a>
                 @endif
             </div>
         </div>
