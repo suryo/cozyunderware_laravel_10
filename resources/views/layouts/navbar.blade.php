@@ -90,12 +90,15 @@
                             </div>
                         </li>
                         <li class="sidebar-dropdown">
-                            <a href="#">
+                            <a href="{{ route('front.cart') }}">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>E-commerce</span>
-                                <span class="badge badge-pill badge-danger">3</span>
+                                <span>Carts</span>
+                                {{-- <span>E-commerce</span> --}}
+                                <span
+                                    class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
+                                </span>
                             </a>
-                            <div class="sidebar-submenu">
+                            {{-- <div class="sidebar-submenu">
                                 <ul>
                                     <li>
                                         <a href="{{ URL('orders') }}">Order</a>
@@ -104,7 +107,7 @@
                                         <a href="{{ URL('order_details') }}">Order Detail</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
