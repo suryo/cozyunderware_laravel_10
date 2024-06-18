@@ -9,12 +9,15 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BuktiTransferController;
 use App\Http\Controllers\FrontCartController;
 use App\Http\Controllers\FrontCheckoutController;
 use App\Http\Controllers\FrontDashboardController;
 use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\MetodeRekomendationProductController;
 use App\Http\Controllers\ProductRecomendationController;
+use App\Http\Controllers\RatingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,11 +48,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/front/cart/delete/{product}', [FrontCartController::class, 'delete'])->name('front.delete.cart');
 
     // FRONT CHECKOUT
-    Route::get('/front/checkout',[FrontCheckoutController::class,'index'])->name('front.checkout');
-    Route::post('/front/checkout/orders',[FrontCheckoutController::class,'orders'])->name('front.checkout.orders');
+    Route::get('/front/checkout', [FrontCheckoutController::class, 'index'])->name('front.checkout');
+    Route::post('/front/checkout/orders', [FrontCheckoutController::class, 'orders'])->name('front.checkout.orders');
 
     // FRONT ORDERS
-    Route::get('/front/detail/order/{order}',[FrontCheckoutController::class,'getOrderWithDetails'])->name('front.detail.order');
+    Route::get('/front/detail/order/{order}', [FrontCheckoutController::class, 'getOrderWithDetails'])->name('front.detail.order');
+
+    // BUKTI PEMBAYARAN
+    Route::post('/post/bukti/{order}', [BuktiTransferController::class, 'buktiTransfer'])->name('post.bukti.transfer');
+
+    // RATING PRODUCT
+    Route::get('/front/rating', [RatingController::class, 'index'])->name('front.rating');
+    Route::post('/front/rating/edit/{rating}', [RatingController::class, 'edit'])->name('rating.edit');
+    Route::get('/front/rating/done', [RatingController::class, 'done'])->name('front.rating.done');
 
     //Home
     Route::get('/', [HomeController::class, 'index'])->name('home');

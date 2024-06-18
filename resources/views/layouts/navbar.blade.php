@@ -121,6 +121,24 @@
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
+                                <i class="fa fa-star"></i>
+                                <span>Rating Our Product</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="{{ route('front.rating') }}">Belum Rating
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('front.rating.done') }}">Sudah Rating
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
                                 <i class="far fa-gem"></i>
                                 <span>Product</span>
                             </a>
