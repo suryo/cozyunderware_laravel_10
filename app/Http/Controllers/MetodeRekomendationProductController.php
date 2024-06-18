@@ -93,8 +93,9 @@ class MetodeRekomendationProductController extends Controller
                 $targetProductRatings->pluck('rating')->toArray(),
                 $productRatings->pluck('rating')->toArray()
             );
+            // dump($productId);
+            // dump($similarities);
         }
-
         $weightedSum = 0;
         $similaritySum = 0;
         foreach ($similarities as $otherProductId => $similarity) {
