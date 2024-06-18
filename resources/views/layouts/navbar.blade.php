@@ -52,172 +52,241 @@
         </div> --}}
             <!-- sidebar-search  -->
             @if (Auth::user())
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>Dashboard</span>
-                                <span class="badge badge-pill badge-warning">New</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('dashboard') }}">Home
-                                            {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('front.product') }}">Product
-                                            {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('front.recomendation') }}">Product recomendation
-                                            {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
-                                        </a>
-                                    </li>
-                                    {{-- <li>
-                    <a href="#">Dashboard 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Dashboard 3</a>
-                  </li> --}}
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="{{ route('front.cart') }}">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Carts</span>
-                                {{-- <span>E-commerce</span> --}}
-                                <span
-                                    class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
-                                </span>
-                            </a>
-                            {{-- <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ URL('orders') }}">Order</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ URL('order_details') }}">Order Detail</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="{{ route('orders.index') }}">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span>My Orders</span>
-                                {{-- <span>E-commerce</span> --}}
-                                {{-- <span
-                                    class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
-                                </span> --}}
-                            </a>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-star"></i>
-                                <span>Rating Our Product</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('front.rating') }}">Belum Rating
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('front.rating.done') }}">Sudah Rating
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="far fa-gem"></i>
-                                <span>Product</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ URL('product') }}">Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ URL('brand') }}">Brand</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ URL('category') }}">Category</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Charts</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Pie chart</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Line chart</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Bar chart</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Histogram</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-globe"></i>
-                                <span>Maps</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Google maps</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Open street map</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="header-menu">
-                            <span>Extra</span>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Documentation</span>
-                                <span class="badge badge-pill badge-primary">Beta</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar"></i>
-                                <span>Calendar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-folder"></i>
-                                <span>Examples</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            {{-- @dump(Auth::user()->level) --}}
+                @if (Auth::user()->level == 'admin')
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>General</span>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-tachometer-alt"></i>
+                                    <span>Dashboard</span>
+                                    <span class="badge badge-pill badge-warning">New</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('dashboard') }}">Home
+                                                {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('front.product') }}">Product
+                                                {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('front.recomendation') }}">Product recomendation
+                                                {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
+                                            </a>
+                                        </li>
+                                        {{-- <li>
+                <a href="#">Dashboard 2</a>
+              </li>
+              <li>
+                <a href="#">Dashboard 3</a>
+              </li> --}}
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="{{ route('front.cart') }}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Carts</span>
+                                    {{-- <span>E-commerce</span> --}}
+                                    <span
+                                        class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
+                                    </span>
+                                </a>
+                                {{-- <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="{{ URL('orders') }}">Order</a>
+                                </li>
+                                <li>
+                                    <a href="{{ URL('order_details') }}">Order Detail</a>
+                                </li>
+                            </ul>
+                        </div> --}}
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="{{ route('orders.index') }}">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span>My Orders</span>
+                                    {{-- <span>E-commerce</span> --}}
+                                    {{-- <span
+                                class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
+                            </span> --}}
+                                </a>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-star"></i>
+                                    <span>Rating Our Product</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('front.rating') }}">Belum Rating
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('front.rating.done') }}">Sudah Rating
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="far fa-gem"></i>
+                                    <span>Product</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ URL('product') }}">Product</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ URL('brand') }}">Brand</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ URL('category') }}">Category</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-chart-line"></i>
+                                    <span>Charts</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Pie chart</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Line chart</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Bar chart</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Histogram</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-globe"></i>
+                                    <span>Maps</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Google maps</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Open street map</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="header-menu">
+                                <span>Extra</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-book"></i>
+                                    <span>Documentation</span>
+                                    <span class="badge badge-pill badge-primary">Beta</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-folder"></i>
+                                    <span>Examples</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                @else
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>General</span>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-tachometer-alt"></i>
+                                    <span>Dashboard</span>
+                                    <span class="badge badge-pill badge-warning">New</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('dashboard') }}">Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('front.product') }}">Product
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('front.recomendation') }}">Product recomendation
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="{{ route('front.cart') }}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Carts</span>
+                                    <span
+                                        class="badge badge-pill badge-danger">{{ App\Services\CartService::getUserCartCount() }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="{{ route('orders.index') }}">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span>My Orders</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-star"></i>
+                                    <span>Rating Our Product</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('front.rating') }}">Belum Rating
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('front.rating.done') }}">Sudah Rating
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                @endif
+
                 <!-- sidebar-menu  -->
             @endif
         </div>

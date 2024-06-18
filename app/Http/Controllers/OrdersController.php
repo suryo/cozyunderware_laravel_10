@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
     public function index()
     {
-        $orders = Orders::all();
+        $userLevel = Auth::user()->level;
+        if ($userLevel == 'user') {
+            $userId = Auth::id();
+            $orders = Orders::where('iduser', $userId)->get();
+        } else {
+            $orders = Orders::all();
+        }
+
         return view('Orders.index', compact('orders'));
     }
 

@@ -12,6 +12,7 @@
                     <th>Harga Produk</th>
                     <th>Qty</th>
                     <th>Subtotal Produk</th>
+                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                         <td>{{ $orderDetail->hargaproduk }}</td>
                         <td>{{ $orderDetail->qty }}</td>
                         <td>{{ $orderDetail->subtotalproduk }}</td>
+                        <td>{{ $orderDetail->rating }}</td>
                     </tr>
                 @endforeach
             </tbody>
