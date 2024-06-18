@@ -52,7 +52,7 @@ class FrontCheckoutController extends Controller
             $validate['ordertotal'] = $subtotal;
             $validate['pengiriman'] = "-";
             $validate['payment_method'] = "-";
-            $validate['payment_status'] = "-";
+            $validate['payment_status'] = "belum bayar";
             $validate['tracking_number'] = "-";
             $validate['deleted'] = "false";
 
