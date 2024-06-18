@@ -42,6 +42,7 @@ return new class extends Migration
             $table->integer('shipping_id')->nullable();
             $table->integer('country_code')->nullable();
             $table->integer('shipping_status')->nullable();
+            $table->text('bukti_transfer')->nullable();
             $table->timestamps();
         });
     }
