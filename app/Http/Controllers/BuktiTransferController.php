@@ -10,10 +10,10 @@ class BuktiTransferController extends Controller
 {
     use ImageUploadTrait;
 
-    public function index()
-    {
-        return view('');
-    }
+    // public function index()
+    // {
+    //     return view('');
+    // }
 
     public function buktiTransfer(Request $request, Orders $order)
     {
