@@ -35,12 +35,16 @@
                                             <td>{{ $order->ordertotal }}</td>
                                             <!-- Add more columns if needed -->
                                             <td>
-                                                <a href="{{ route('front.detail.order',$order->id) }}" class="btn btn-primary btn-sm">Detail</a>
-                                                <form action="" method="POST" class="d-inline">
+                                                <a href="{{ route('front.detail.order', $order->id) }}"
+                                                    class="btn btn-primary btn-sm">Detail</a>
+                                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST"
+                                                    class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
                                                 </form>
+
                                             </td>
                                         </tr>
                                     @endforeach

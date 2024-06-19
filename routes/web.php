@@ -69,10 +69,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
     //Product
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/product/create', [ProductController::class, 'create']);
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('products.store');;
-    Route::get('/product/edit/{product}', [ProductController::class, 'edit']);
-    Route::put('/product/update{product}', [ProductController::class, 'update'])->name('product.update');;
+    Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/product/update{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/destroy{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     //CategoryProduct
     Route::get('/product_categories', [ProductCategoryController::class, 'index']);
     Route::get('/product_categories/create', [ProductCategoryController::class, 'store']);
@@ -87,24 +88,24 @@ Route::middleware('auth')->group(function () {
     //Category
     Route::get('/category', [ProductCategoryController::class, 'index'])->name('product_categories.index');
     Route::get('/category/create', [ProductCategoryController::class, 'create']);
-    Route::post('/category/store', [ProductCategoryController::class, 'store'])->name('product_categories.store');;
+    Route::post('/category/store', [ProductCategoryController::class, 'store'])->name('product_categories.store');
     Route::post('/category/delete/{id}', [ProductCategoryController::class, 'destroy']);
     Route::get('/category/edit/{id}', [ProductCategoryController::class, 'edit']);
-    Route::post('/category/update/{id}', [ProductCategoryController::class, 'update'])->name('product_categories.update');;
+    Route::post('/category/update/{id}', [ProductCategoryController::class, 'update'])->name('product_categories.update');
     //Orders
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
     Route::get('/orders/create', [OrdersController::class, 'create']);
-    Route::post('/orders/store', [OrdersController::class, 'store'])->name('orders.store');;
-    Route::post('/orders/delete/{id}', [OrdersController::class, 'destroy']);
-    Route::get('/orders/edit/{id}', [OrdersController::class, 'edit']);
-    Route::post('/orders/update/{id}', [OrdersController::class, 'update'])->name('orders.update');;
+    Route::post('/orders/store', [OrdersController::class, 'store'])->name('orders.store');
+    Route::delete('/orders/delete/{order}', [OrdersController::class, 'destroy'])->name('orders.destroy');
+    Route::get('/orders/edit/{order}', [OrdersController::class, 'edit']);
+    Route::post('/orders/update/{order}', [OrdersController::class, 'update'])->name('orders.update');
     //OrdersDetail
     Route::get('/order_details', [OrderDetailController::class, 'index'])->name('order_details.index');
     Route::get('/order_details/create', [OrderDetailController::class, 'create'])->name('order_details.create');
-    Route::post('/order_details/store', [OrderDetailController::class, 'store'])->name('order_details.store');;
+    Route::post('/order_details/store', [OrderDetailController::class, 'store'])->name('order_details.store');
     Route::post('/order_details/delete/{id}', [OrderDetailController::class, 'destroy']);
     Route::get('/order_details/edit/{id}', [OrderDetailController::class, 'edit']);
-    Route::post('/order_details/update/{id}', [OrderDetailController::class, 'update'])->name('order_details.update');;
+    Route::post('/order_details/update/{id}', [OrderDetailController::class, 'update'])->name('order_details.update');
     //Category
     //Rekomendasi Product
     Route::get('/ProductRekomendasi', [ProductRecomendationController::class, 'index']);

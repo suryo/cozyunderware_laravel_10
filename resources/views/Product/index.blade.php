@@ -19,6 +19,7 @@
                                         <th>ID</th>
                                         <th>SKU</th>
                                         <th>Category</th>
+                                        <th>Brand</th>
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Image</th>
@@ -31,19 +32,24 @@
                                         <tr>
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->sku }}</td>
-                                            <td>{{ $product->product_category }}</td>
+                                            <td>{{ $product->category->product_category_name }}</td>
+                                            <td>{{ $product->brand->product_brand }}</td>
                                             <td>{{ $product->product_name }}</td>
                                             <td>{{ $product->product_price }}</td>
                                             <td>
-                                                <img src="{{ !empty($product->fileimages) ? $product->fileimages : asset('assets/logo/LOGO FIKS-min.jpg')  }}" width="100px" height="100px" alt="">
+                                                <img src="{{ !empty($product->fileimages) ? $product->fileimages : asset('assets/logo/LOGO FIKS-min.jpg') }}"
+                                                    width="100px" height="100px" alt="">
                                             </td>
                                             <td>{{ $product->status }}</td>
                                             <td>
-                                                <a href="{{URL('product/edit/'.$product->id.'/')}}" class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="" method="POST" class="d-inline">
+                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                    class="btn btn-primary btn-sm">Edit</a>
+                                                <form action="{{ route('product.destroy', $product->id) }}" method="POST"
+                                                    class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
