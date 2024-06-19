@@ -75,17 +75,17 @@ class FrontCheckoutController extends Controller
             Cart::where('user_id', $userId)->delete();
 
             // Fetch order details and return the invoice view
-            return $this->getOrderWithDetails($order->id);
+            return redirect()->route('front.detail.order', $order->id);
         } else {
             // Handle case where cart is empty
             return back()->with('error', 'Cart kosong.');
         }
     }
 
-    public function getOrderWithDetails($orderId)
+    public function getOrderWithDetails($order)
     {
         // Retrieve the order with its order details
-        $order = Orders::with('orderDetails')->find($orderId);
+        $order = Orders::with('orderDetails')->find($order);
 
         // Return the invoice view with order details
         return view('Front-Store.Checkout.invoice', compact('order'));

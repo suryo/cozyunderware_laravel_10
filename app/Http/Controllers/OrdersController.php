@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderDetail;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,22 +33,22 @@ class OrdersController extends Controller
             // tentukan validasi sesuai dengan kebutuhan Anda
         ]);
 
-        Order::create($request->all());
+        Orders::create($request->all());
 
         return redirect()->route('orders.index')->with('success', 'Order created successfully.');
     }
 
-    public function show(Order $order)
+    public function show(Orders $order)
     {
         return view('orders.show', compact('order'));
     }
 
-    public function edit(Order $order)
+    public function edit(Orders $order)
     {
         return view('orders.edit', compact('order'));
     }
 
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Orders $order)
     {
         $request->validate([
             // tentukan validasi sesuai dengan kebutuhan Anda
@@ -58,10 +59,15 @@ class OrdersController extends Controller
         return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
     }
 
-    public function destroy(Order $order)
+    public function destroy(Orders $order)
     {
+        // Hapus detail pesanan yang terkait dengan pesanan
+        OrderDetail::where('idorder', $order->id)->delete();
+
+        // Hapus pesanan
         $order->delete();
 
-        return redirect()->route('orders.index')->with('success', 'Order deleted successfully.');
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Order deleted successfully.');
     }
 }
