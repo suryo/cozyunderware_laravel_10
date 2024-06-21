@@ -172,7 +172,6 @@
             }
         </style>
         <div class="container bootdey">
-
             <div class="col-md-9">
                 <div class="row product-list">
                     @foreach ($recommendations as $product)
@@ -259,7 +258,7 @@
                 </div>
             </div>
         </div>
-        <hr class="mb-5">
+        <hr>
         {{-- @dump($) --}}
         <div class="container mb-5">
             <div class="row justify-content-center">
@@ -308,16 +307,52 @@
                 </div>
             </div>
         </div>
-        <hr class="mb-5">
+        <hr>
+        <div class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">Product List Cosine Similarity </div>
+                        <div class="card-body">
+                            @if (count($recommendations) == 0)
+                                <p>No product found.</p>
+                            @else
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product ID</th>
+                                            <th>Other Product ID</th>
+                                            <th>Cosine Similarity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($recommendations as $recommendation)
+                                            @foreach ($recommendation['predicted_rating']['cosineSimilarities'] as $productId => $similarities)
+                                                @foreach ($similarities as $otherProductId => $similarity)
+                                                    <tr>
+                                                        <td>{{ $productId }}</td>
+                                                        <td>{{ $otherProductId }}</td>
+                                                        <td>{{ $similarity }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        {{-- @dump($recommendations) --}}
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">Product List Recomendation With Metode Collaborative filtering </div>
-
                         <div class="card-body">
-                            {{-- <a href="/product/create" class="btn btn-primary mb-3">Add Product</a> --}}
-
                             @if (count($recommendations) == 0)
                                 <p>No product found.</p>
                             @else
@@ -331,8 +366,6 @@
                                             <th>Price</th>
                                             <th>Image</th>
                                             <th>rating</th>
-                                            {{-- <th>Status</th>
-                                    <th>Actions</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -347,16 +380,7 @@
                                                     <img src="{{ !empty($product['product']->fileimages) ? asset($product['product']->fileimages) : asset('assets/logo/LOGO FIKS-min.jpg') }}"
                                                         width="100px" height="100px" alt="">
                                                 </td>
-                                                <td>{{ $product['predicted_rating'] }}</td>
-                                                {{-- <td>{{ $product['product']->status }}</td>
-                                        <td>
-                                            <a href="{{URL('product/edit/'.$product['product']->id.'/')}}" class="btn btn-primary btn-sm">Edit</a>
-                                            <form action="" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
-                                            </form>
-                                        </td> --}}
+                                                <td>{{ $product['predicted_rating']['predictedRating'] }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -367,6 +391,7 @@
                 </div>
             </div>
         </div>
+
     @endif
 
 @endsection
