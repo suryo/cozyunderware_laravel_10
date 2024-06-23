@@ -16,6 +16,7 @@ class MetodeRekomendationProductController extends Controller
             ->get();
 
         // Count ratings per product ID
+        // mengambil data dari tabel OrderDetail dan menggabungkannya dengan tabel products untuk mendapatkan nama produk serta menghitung jumlah rating yang ada pada setiap produk
         $productRatingCountById = OrderDetail::selectRaw('order_details.idProduct, products.product_name, count(*) as rating_count')
             ->leftJoin('products', 'order_details.idProduct', '=', 'products.id')
             ->whereNotNull('order_details.rating')
@@ -24,6 +25,8 @@ class MetodeRekomendationProductController extends Controller
             ->get(['order_details.idProduct', 'products.product_name', 'rating_count']);
 
         // $userId = $request->user()->id;
+        // memanggil metode recommendProducts untuk mendapatkan produk rekomendasi dan kemudian merender view RekomendasiProduk.index dengan mengirimkan data yang dibutuhkan oleh view tersebut,
+        // yaitu product_ratings, productRatingCountById, dan recommendations. View tersebut kemudian dapat menggunakan data ini untuk menampilkan informasi yang relevan kepada pengguna, seperti daftar produk dengan rating tertinggi dan rekomendasi produk.
         $recommendations = self::recommendProducts();
 
         return view('RekomendasiProduk.index', compact('product_ratings', 'productRatingCountById', 'recommendations'));
@@ -31,7 +34,7 @@ class MetodeRekomendationProductController extends Controller
 
     public static function recommendProducts()
     {
-        $limit = 10;
+        //$limit = 10;
         // Ambil semua id produk yang sudah dirating oleh pengguna
         $ratedProductIds = OrderDetail::pluck('idproduct')->toArray();
         // dump($ratedProductIds);
@@ -70,40 +73,36 @@ class MetodeRekomendationProductController extends Controller
 
     public static function predictRating($productId)
     {
-        // Retrieve all order details
+        // Ambil semua detail order yang ada
         $orderDetails = OrderDetail::all();
 
-        // Group order details by product ID
+        // Kelompokkan detail order berdasarkan produk
         $ratings = $orderDetails->groupBy('idproduct');
-
-        // Get ratings for the target product
+        // dump($productId);
+        // dump($ratings);
+        // Ambil rating produk yang ditargetkan
         $targetProductRatings = $ratings->get($productId);
         if (!$targetProductRatings) {
             return null;
         }
-
+        // dump($targetProductRatings);
         $similarities = [];
-        $productsimilarity = [];
-
         foreach ($ratings as $otherProductId => $productRatings) {
             if ($otherProductId == $productId) {
                 continue;
             }
-            // Calculate similarity between target product and other products
-            $similarity = self::cosineSimilarity(
+            // Hitung similarity antara produk yang ditargetkan dengan produk lainnya
+            $similarities[$otherProductId] = self::cosineSimilarity(
                 $targetProductRatings->pluck('rating')->toArray(),
                 $productRatings->pluck('rating')->toArray()
             );
-
-            $similarities[$otherProductId] = $similarity;
+            // dump($productId);
+            // dump($similarities);
         }
-
-        $productsimilarity[$productId] = $similarities;
-
         $weightedSum = 0;
         $similaritySum = 0;
         foreach ($similarities as $otherProductId => $similarity) {
-            // Find a rating for the other product that has similarity
+            // Cari rating dari pengguna untuk produk lain yang memiliki similarity
             $userRating = $ratings->get($otherProductId)->first();
             if ($userRating) {
                 $weightedSum += $similarity * $userRating->rating;
@@ -111,17 +110,9 @@ class MetodeRekomendationProductController extends Controller
             }
         }
 
-        // Calculate predicted rating based on similarities
-        $predictedRating = $similaritySum ? $weightedSum / $similaritySum : null;
-
-        $data = [
-            'predictedRating' => $predictedRating,
-            'cosineSimilarities' => $productsimilarity
-        ];
-
-        return $data;
+        // Hitung prediksi rating berdasarkan similarity
+        return $similaritySum ? $weightedSum / $similaritySum : null;
     }
-
 
     public static function cosineSimilarity($vec1, $vec2)
     {
