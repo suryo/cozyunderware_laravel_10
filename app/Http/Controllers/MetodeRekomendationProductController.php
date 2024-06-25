@@ -73,36 +73,40 @@ class MetodeRekomendationProductController extends Controller
 
     public static function predictRating($productId)
     {
-        // Ambil semua detail order yang ada
+        // Retrieve all order details
         $orderDetails = OrderDetail::all();
 
-        // Kelompokkan detail order berdasarkan produk
+        // Group order details by product ID
         $ratings = $orderDetails->groupBy('idproduct');
-        // dump($productId);
-        // dump($ratings);
-        // Ambil rating produk yang ditargetkan
+
+        // Get ratings for the target product
         $targetProductRatings = $ratings->get($productId);
         if (!$targetProductRatings) {
             return null;
         }
-        // dump($targetProductRatings);
+
         $similarities = [];
+        $productsimilarity = [];
+
         foreach ($ratings as $otherProductId => $productRatings) {
             if ($otherProductId == $productId) {
                 continue;
             }
-            // Hitung similarity antara produk yang ditargetkan dengan produk lainnya
-            $similarities[$otherProductId] = self::cosineSimilarity(
+            // Calculate similarity between target product and other products
+            $similarity = self::cosineSimilarity(
                 $targetProductRatings->pluck('rating')->toArray(),
                 $productRatings->pluck('rating')->toArray()
             );
-            // dump($productId);
-            // dump($similarities);
+
+            $similarities[$otherProductId] = $similarity;
         }
+
+        $productsimilarity[$productId] = $similarities;
+
         $weightedSum = 0;
         $similaritySum = 0;
         foreach ($similarities as $otherProductId => $similarity) {
-            // Cari rating dari pengguna untuk produk lain yang memiliki similarity
+            // Find a rating for the other product that has similarity
             $userRating = $ratings->get($otherProductId)->first();
             if ($userRating) {
                 $weightedSum += $similarity * $userRating->rating;
@@ -110,8 +114,15 @@ class MetodeRekomendationProductController extends Controller
             }
         }
 
-        // Hitung prediksi rating berdasarkan similarity
-        return $similaritySum ? $weightedSum / $similaritySum : null;
+        // Calculate predicted rating based on similarities
+        $predictedRating = $similaritySum ? $weightedSum / $similaritySum : null;
+
+        $data = [
+            'predictedRating' => $predictedRating,
+            'cosineSimilarities' => $productsimilarity
+        ];
+
+        return $data;
     }
 
     public static function cosineSimilarity($vec1, $vec2)
